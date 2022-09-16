@@ -1,4 +1,3 @@
-
 import 'package:book_tickets/screen/bottom_bar.dart';
 import 'package:flutter/material.dart';
 

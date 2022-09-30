@@ -1,4 +1,6 @@
+import 'package:book_tickets/screen/hotel_screen.dart';
 import 'package:book_tickets/screen/ticket_view.dart';
+import 'package:book_tickets/utils/app_info_list.dart';
 import 'package:book_tickets/utils/app_styles.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Styles.bgColor,
       body: ListView(
@@ -63,9 +66,9 @@ class HomeScreen extends StatelessWidget {
                       style: Styles.headLineStyle2,
                     ),
                     InkWell(
-                      onTap: (){
-                        print("Tapped");
-                      },
+                        onTap: () {
+                          print("Tapped");
+                        },
                         child: Text("View all",
                             style: Styles.textStyle
                                 .copyWith(color: Styles.primaryColor)))
@@ -79,13 +82,40 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20),
             scrollDirection: Axis.horizontal,
             child: Row(
+              children: ticketList.map((element) =>
+              TicketView(ticket: element)
+              ).toList()
+            ),
+          ),
+          const Gap(15),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TicketView(),
-                TicketView()
+                Text(
+                  "Hotels",
+                  style: Styles.headLineStyle2,
+                ),
+                InkWell(
+                    onTap: () {
+                      print("Tapped");
+                    },
+                    child: Text("View all",
+                        style: Styles.textStyle
+                            .copyWith(color: Styles.primaryColor)))
               ],
             ),
           ),
           const Gap(15),
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(left: 20),
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: hotelList.map((element) => HotelScreen(hotel: element))
+                  .toList()
+            ),
+          ),
         ],
       ),
     );
